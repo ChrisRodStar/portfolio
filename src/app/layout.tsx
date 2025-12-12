@@ -12,8 +12,34 @@ const JetBrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: "christopher rodriguez - portfolio",
-  description: "developer & designer portfolio",
+  title: {
+    default: "Christopher Rodriguez - Developer & Designer",
+    template: "%s | Christopher Rodriguez",
+  },
+  description:
+    "Developer building modern web applications with clean architecture and great user experiences. Based in Greensboro, NC.",
+  keywords: [
+    "Christopher Rodriguez",
+    "web developer",
+    "software engineer",
+    "portfolio",
+    "React",
+    "Next.js",
+    "TypeScript",
+  ],
+  authors: [{ name: "Christopher Rodriguez" }],
+  creator: "Christopher Rodriguez",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default function RootLayout({

@@ -2,6 +2,9 @@
 
 import { useState, useEffect } from "react";
 
+// Note: Metadata must be in a separate file for client components
+// See src/app/(about)/resume/layout.tsx for SEO metadata
+
 const resumeData = {
   name: "Christopher Rodriguez",
   title: "Full Stack Developer",

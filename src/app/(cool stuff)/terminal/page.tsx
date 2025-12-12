@@ -1,3 +1,10 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Terminal",
+  description: "Interactive terminal experience by Christopher Rodriguez.",
+};
+
 export default function TerminalPage() {
   return (
     <main className="p-8 max-w-4xl mx-auto flex flex-col flex-1">

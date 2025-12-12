@@ -1,5 +1,12 @@
 import NoteCard from "@/components/NoteCard";
 import { notes } from "@/lib/notes";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Notes",
+  description:
+    "Development notes, learnings, and thoughts from Christopher Rodriguez.",
+};
 
 export default function NotesPage() {
   return (

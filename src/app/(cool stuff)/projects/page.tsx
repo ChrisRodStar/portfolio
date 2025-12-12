@@ -1,5 +1,12 @@
 import ProjectCard from "@/components/ProjectCard";
 import { projects, getContributors } from "@/lib/projects";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Projects",
+  description:
+    "Featured projects by Christopher Rodriguez - web applications built with modern technologies.",
+};
 
 export default async function Projects() {
   // Fetch contributors for all projects

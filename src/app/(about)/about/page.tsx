@@ -1,4 +1,11 @@
 import Image from "next/image";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "About",
+  description:
+    "Learn more about Christopher Rodriguez - a self-taught developer building clean, fast tools and websites with Next.js.",
+};
 
 export default function About() {
   return (

@@ -1,18 +1,21 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useTransition } from "react";
+import { getClicks, incrementClicks } from "@/lib/actions";
 
 export default function ClickMe() {
   const [count, setCount] = useState<number | null>(null);
+  const [isPending, startTransition] = useTransition();
 
   useEffect(() => {
-    fetch('/api/clicks').then(r => r.json()).then(d => setCount(d.count));
+    getClicks().then(setCount);
   }, []);
 
-  const handleClick = async () => {
-    const res = await fetch('/api/clicks', { method: 'POST' });
-    const data = await res.json();
-    setCount(data.count);
+  const handleClick = () => {
+    startTransition(async () => {
+      const newCount = await incrementClicks();
+      setCount(newCount);
+    });
   };
 
   return (
@@ -28,9 +31,10 @@ export default function ClickMe() {
       </p>
       <button
         onClick={handleClick}
-        className="block w-full bg-card-border hover:bg-muted text-white text-center py-1.5 rounded-lg text-xs transition-colors mt-auto"
+        disabled={isPending}
+        className="block w-full bg-card-border hover:bg-muted text-white text-center py-1.5 rounded-lg text-xs transition-colors mt-auto disabled:opacity-50"
       >
-        Click Me!
+        {isPending ? '...' : 'Click Me!'}
       </button>
     </div>
   );

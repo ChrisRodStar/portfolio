@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
 interface GitHubCommit {
   sha: string;
@@ -13,7 +13,18 @@ interface GitHubRepo {
   pushed_at: string;
 }
 
-export async function GET() {
+function checkAuth(request: NextRequest): NextResponse | null {
+  const apiKey = request.headers.get('x-api-key');
+  if (apiKey !== process.env.API_SECRET) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
+  return null;
+}
+
+export async function GET(request: NextRequest) {
+  const authError = checkAuth(request);
+  if (authError) return authError;
+
   try {
     const headers: Record<string, string> = {
       'Accept': 'application/vnd.github+json',
@@ -24,7 +35,6 @@ export async function GET() {
       headers.Authorization = `Bearer ${process.env.GITHUB_TOKEN}`;
     }
 
-    // Get recently pushed repos
     const reposRes = await fetch(
       'https://api.github.com/users/ChrisRodStar/repos?sort=pushed&per_page=5',
       { headers, next: { revalidate: 300 } }
@@ -36,7 +46,6 @@ export async function GET() {
 
     const repos: GitHubRepo[] = await reposRes.json();
 
-    // Fetch latest commit from each repo
     const commitPromises = repos.map(async (repo) => {
       const commitsRes = await fetch(
         `https://api.github.com/repos/ChrisRodStar/${repo.name}/commits?per_page=4`,

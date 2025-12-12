@@ -46,4 +46,9 @@ Create a `.env.local` with:
 ```env
 DATABASE_URL=your_neon_connection_string
 GITHUB_TOKEN=your_github_pat
+API_SECRET=your_random_secret_key
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
 ```
+
+---
+

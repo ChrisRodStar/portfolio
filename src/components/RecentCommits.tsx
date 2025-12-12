@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { getCommits } from "@/lib/actions";
 
 interface Commit {
   repo: string;
@@ -13,24 +14,9 @@ export default function RecentCommits() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    async function fetchCommits() {
-      try {
-        const res = await fetch("/api/commits");
-        const data = await res.json();
-
-        if (data.error) {
-          throw new Error(data.error);
-        }
-
-        setCommits(data);
-      } catch (error) {
-        console.error("Failed to fetch commits:", error);
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    fetchCommits();
+    getCommits()
+      .then(setCommits)
+      .finally(() => setLoading(false));
   }, []);
 
   if (loading) {

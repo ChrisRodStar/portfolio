@@ -64,7 +64,13 @@ export async function GET(request: NextRequest) {
 
     const allCommits = (await Promise.all(commitPromises)).flat().slice(0, 12);
 
-    return NextResponse.json(allCommits);
+    return NextResponse.json(allCommits, {
+      headers: {
+        'Access-Control-Allow-Origin': request.headers.get('origin') || process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
+        'Access-Control-Allow-Methods': 'GET',
+        'Access-Control-Allow-Headers': 'x-api-key, Content-Type',
+      }
+    });
   } catch (error) {
     console.error('Failed to fetch commits:', error);
     return NextResponse.json(

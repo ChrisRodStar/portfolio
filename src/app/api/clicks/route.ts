@@ -16,7 +16,13 @@ export async function GET(request: NextRequest) {
   try {
     const result = await sql`SELECT count FROM clicks WHERE id = 1`;
     const count = result[0]?.count ?? 0;
-    return NextResponse.json({ count });
+    return NextResponse.json({ count }, {
+      headers: {
+        'Access-Control-Allow-Origin': request.headers.get('origin') || process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
+        'Access-Control-Allow-Methods': 'GET, POST',
+        'Access-Control-Allow-Headers': 'x-api-key, Content-Type',
+      }
+    });
   } catch {
     return NextResponse.json({ count: 0 });
   }
@@ -30,7 +36,13 @@ export async function POST(request: NextRequest) {
     const result = await sql`
       UPDATE clicks SET count = count + 1 WHERE id = 1 RETURNING count
     `;
-    return NextResponse.json({ count: result[0].count });
+    return NextResponse.json({ count: result[0].count }, {
+      headers: {
+        'Access-Control-Allow-Origin': request.headers.get('origin') || process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
+        'Access-Control-Allow-Methods': 'GET, POST',
+        'Access-Control-Allow-Headers': 'x-api-key, Content-Type',
+      }
+    });
   } catch {
     return NextResponse.json({ error: 'Failed to increment' }, { status: 500 });
   }

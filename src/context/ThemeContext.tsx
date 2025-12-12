@@ -96,30 +96,32 @@ const accentColors = {
   lavender: { latte: "#7287fd", frappe: "#babbf1", macchiato: "#b7bdf8", mocha: "#b4befe" },
 };
 
-const getInitialFlavor = (): ThemeFlavor => {
-  if (typeof window === "undefined") return "mocha";
-  return (localStorage.getItem("theme-flavor") as ThemeFlavor) || "mocha";
-};
-
-const getInitialAccent = (): AccentColor => {
-  if (typeof window === "undefined") return "flamingo";
-  return (localStorage.getItem("theme-accent") as AccentColor) || "flamingo";
-};
-
-const getInitialBgEffect = (): boolean => {
-  if (typeof window === "undefined") return false;
-  return localStorage.getItem("background-effect") === "true";
-};
-
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [flavor, setFlavor] = useState<ThemeFlavor>(getInitialFlavor);
-  const [accent, setAccent] = useState<AccentColor>(getInitialAccent);
-  const [backgroundEffect, setBackgroundEffect] = useState(getInitialBgEffect);
+  const [flavor, setFlavor] = useState<ThemeFlavor>("mocha");
+  const [accent, setAccent] = useState<AccentColor>("flamingo");
+  const [backgroundEffect, setBackgroundEffect] = useState(true);
+  const [mounted, setMounted] = useState(false);
+
+  // Load from localStorage after mount to avoid hydration mismatch
+  useEffect(() => {
+    const storedFlavor = localStorage.getItem("theme-flavor") as ThemeFlavor;
+    const storedAccent = localStorage.getItem("theme-accent") as AccentColor;
+    const storedBgEffect = localStorage.getItem("background-effect");
+
+    if (storedFlavor) setFlavor(storedFlavor);
+    if (storedAccent) setAccent(storedAccent);
+    // Only override default if user has explicitly set a preference
+    if (storedBgEffect !== null) setBackgroundEffect(storedBgEffect === "true");
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
-    localStorage.setItem("theme-flavor", flavor);
-    localStorage.setItem("theme-accent", accent);
-    localStorage.setItem("background-effect", String(backgroundEffect));
+    // Only persist to localStorage after initial mount
+    if (mounted) {
+      localStorage.setItem("theme-flavor", flavor);
+      localStorage.setItem("theme-accent", accent);
+      localStorage.setItem("background-effect", String(backgroundEffect));
+    }
 
     const colors = flavors[flavor];
     const accentColor = accentColors[accent][flavor];
@@ -137,7 +139,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     // For latte (light theme), use dark text for hover; for dark themes, use light text
     const hoverColor = flavor === "latte" ? colors.text : "#ffffff";
     document.documentElement.style.setProperty("--hover", hoverColor);
-  }, [flavor, accent, backgroundEffect]);
+  }, [flavor, accent, backgroundEffect, mounted]);
 
   return (
     <ThemeContext.Provider value={{ flavor, setFlavor, accent, setAccent, backgroundEffect, setBackgroundEffect }}>

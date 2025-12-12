@@ -2,13 +2,11 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 export function proxy(request: NextRequest) {
-  const nonce = Buffer.from(crypto.randomUUID()).toString("base64");
-
   const cspHeader = `
     default-src 'self';
-    script-src 'self' 'nonce-${nonce}' 'strict-dynamic';
+    script-src 'self' 'unsafe-inline' 'unsafe-eval';
     style-src 'self' 'unsafe-inline';
-    img-src 'self' blob: data: https://avatars.githubusercontent.com;
+    img-src 'self' blob: data: https://avatars.githubusercontent.com https://komarev.com;
     font-src 'self';
     object-src 'none';
     base-uri 'self';
@@ -22,7 +20,6 @@ export function proxy(request: NextRequest) {
     .trim();
 
   const requestHeaders = new Headers(request.headers);
-  requestHeaders.set("x-nonce", nonce);
   requestHeaders.set("Content-Security-Policy", contentSecurityPolicyHeaderValue);
 
   const response = NextResponse.next({
@@ -40,6 +37,8 @@ export function proxy(request: NextRequest) {
     "camera=(), microphone=(), geolocation=()"
   );
   response.headers.set("Cross-Origin-Resource-Policy", "same-origin");
+  response.headers.set("Cross-Origin-Embedder-Policy", "credentialless");
+  response.headers.set("Cross-Origin-Opener-Policy", "same-origin");
 
   return response;
 }

@@ -44,6 +44,30 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://chrisrodriguez.dev",
+    siteName: "Christopher Rodriguez",
+    title: "Christopher Rodriguez - Developer & Designer",
+    description:
+      "Developer building modern web applications with clean architecture and great user experiences.",
+    images: [
+      {
+        url: "/opengraph-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Christopher Rodriguez - Developer & Designer",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Christopher Rodriguez - Developer & Designer",
+    description:
+      "Developer building modern web applications with clean architecture and great user experiences.",
+    images: ["/opengraph-image.png"],
+  },
 };
 
 export default function RootLayout({

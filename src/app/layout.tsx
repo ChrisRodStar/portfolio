@@ -2,10 +2,12 @@ import type { Metadata } from "next";
 import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/context/ThemeContext";
-import Footer from "@/components/Footer";
-import Nav from "@/components/Nav";
 import BackgroundEffect from "@/components/BackgroundEffect";
+import Nav from "@/components/Nav";
+import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import Footer from "@/components/Footer";
+
 
 const JetBrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
@@ -61,6 +63,7 @@ export default function RootLayout({
               <Nav />
             </div>
             {children}
+            <Analytics />
             <SpeedInsights/>
             <div className="mt-auto p-4 max-w-6xl mx-auto w-full">
               <Footer />

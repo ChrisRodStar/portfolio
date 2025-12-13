@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: "/api/",
     },
-    sitemap: "https://portfolio-woad-three.vercel.app/sitemap.xml",
+    sitemap: "https://chrisrodriguez.dev/sitemap.xml",
   };
 }

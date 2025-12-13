@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/context/ThemeContext";
 import Footer from "@/components/Footer";
 import Nav from "@/components/Nav";
 import BackgroundEffect from "@/components/BackgroundEffect";
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 const JetBrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
@@ -12,6 +13,7 @@ const JetBrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://chrisrodriguez.dev"),
   title: {
     default: "Christopher Rodriguez - Developer & Designer",
     template: "%s | Christopher Rodriguez",
@@ -59,6 +61,7 @@ export default function RootLayout({
               <Nav />
             </div>
             {children}
+            <SpeedInsights/>
             <div className="mt-auto p-4 max-w-6xl mx-auto w-full">
               <Footer />
             </div>

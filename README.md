@@ -2,7 +2,7 @@
 
 A modern developer portfolio showcasing projects, notes, and real-time GitHub activity.
 
-[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen?style=for-the-badge)](https://portfolio-woad-three.vercel.app/)
+[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen?style=for-the-badge)](https://chrisrodriguez.dev/)
 
 ![Next.js](https://img.shields.io/badge/Next.js_16-000000?style=flat-square&logo=next.js&logoColor=white)
 ![React](https://img.shields.io/badge/React_19-61DAFB?style=flat-square&logo=react&logoColor=black)
@@ -47,7 +47,7 @@ Create a `.env.local` with:
 DATABASE_URL=your_neon_connection_string
 GITHUB_TOKEN=your_github_pat
 API_SECRET=your_random_secret_key
-NEXT_PUBLIC_SITE_URL=http://localhost:3000
+NEXT_PUBLIC_SITE_URL=https://chrisrodriguez.dev
 ```
 
 ---

@@ -62,26 +62,7 @@ export const projects: Project[] = [
       "Key features include a responsive design that looks great on all devices, smooth animations, an intuitive quote request system, and a services showcase that effectively communicates the company's expertise in cultivating beautiful outdoor spaces.",
     ],
   },
-  {
-    username: "ChrisRodStar",
-    repo: "portfolio",
-    description:
-      "Personal portfolio website showcasing projects, notes, and tutorials with a customizable Catppuccin theme.",
-    tags: [
-      { name: "Next.js", color: "blue" },
-      { name: "TypeScript", color: "blue" },
-      { name: "Tailwind", color: "cyan" },
-    ],
-    slug: "portfolio",
-    date: "December 2025",
-    contributors: 1,
-    fullDescription: [
-      "A modern, personal portfolio website built to showcase projects, share notes, and publish tutorials. Features a sleek design with full theme customization using the Catppuccin color palette.",
-      "The site includes an interactive particle background effect, a projects showcase with GitHub integration for live stats, and sections for notes and tutorials to share knowledge with the community.",
-      "Built with Next.js and TypeScript for type safety and performance, styled with Tailwind CSS. The theme system allows visitors to switch between Catppuccin flavors (Latte, Frappé, Macchiato, Mocha) and accent colors for a personalized experience.",
-      "Key features include responsive design, dynamic GitHub stats fetching, a customizable theme system persisted to localStorage, and smooth animations throughout the interface.",
-    ],
-  },
+
 
 ];
 

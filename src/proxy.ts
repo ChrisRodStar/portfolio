@@ -11,6 +11,7 @@ export function proxy(request: NextRequest) {
     object-src 'none';
     base-uri 'self';
     form-action 'self';
+    frame-src 'self' https://www.fourbrotheroutdoors.com https://fourbrotheroutdoors.com;
     frame-ancestors 'none';
     upgrade-insecure-requests;
   `;
@@ -36,9 +37,6 @@ export function proxy(request: NextRequest) {
     "Permissions-Policy",
     "camera=(), microphone=(), geolocation=()"
   );
-  response.headers.set("Cross-Origin-Resource-Policy", "same-origin");
-  response.headers.set("Cross-Origin-Embedder-Policy", "credentialless");
-  response.headers.set("Cross-Origin-Opener-Policy", "same-origin");
 
   return response;
 }

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { getProjectBySlug, getContributors, projects } from "@/lib/projects";
+import LivePreview from "@/components/LivePreview";
 
 export function generateStaticParams() {
   return projects.map((project) => ({
@@ -46,6 +47,16 @@ export default async function ProjectPage({
           {backLabel}
         </Link>
       </div>
+
+      {/* Live Site Preview */}
+      {project.liveUrl && (
+        <section className="mb-8 animate-fade-slide-up">
+          <h2 className="text-lg font-bold mb-3 flex items-center gap-2">
+            <span className="text-accent">▸</span> Live Preview
+          </h2>
+          <LivePreview url={project.liveUrl} title={project.repo} />
+        </section>
+      )}
 
       {/* Project Card Preview */}
       <div className="flex justify-center mb-8">

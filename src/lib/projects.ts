@@ -18,6 +18,7 @@ export interface Project {
   slug: string;
   date: string;
   fullDescription: string[];
+  liveUrl?: string;
 }
 
 export async function getContributors(
@@ -55,6 +56,7 @@ export const projects: Project[] = [
     slug: "four-brothers-outdoors",
     date: "December 2025",
     contributors: 1,
+    liveUrl: "https://www.fourbrotheroutdoors.com",
     fullDescription: [
       "Four Brothers Outdoors is a premium landscaping company website built for a team of four friends who chose craftsmanship over corporate ladders. The site embodies their philosophy: 'We treat your home like our legacy.'",
       "The website features a stunning hero section with immersive imagery, showcasing their services across lawn care & maintenance, landscape design, and hardscaping & construction. Each service section highlights specific offerings like weekly precision mowing, 3D visualization, native plant selection, stone patios, and outdoor kitchens.",

@@ -25,6 +25,7 @@ export default async function Home() {
             alt="Christopher Rodriguez"
             width={80}
             height={80}
+            priority
             className="rounded-full object-cover shrink-0 w-16 h-16 sm:w-20 sm:h-20 animate-float"
           />
           <div>

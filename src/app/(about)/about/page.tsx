@@ -25,6 +25,7 @@ export default function About() {
                 src="/me.webp"
                 alt="Christopher Rodriguez"
                 fill
+                priority
                 className="object-cover"
               />
             </div>

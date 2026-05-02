@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { getProjectBySlug, getContributors, projects } from "@/lib/projects";
-import LivePreview from "@/components/LivePreview";
+import LivePreviewModal from "@/components/LivePreviewModal";
 
 export function generateStaticParams() {
   return projects.map((project) => ({
@@ -48,15 +48,6 @@ export default async function ProjectPage({
         </Link>
       </div>
 
-      {/* Live Site Preview */}
-      {project.liveUrl && (
-        <section className="mb-8 animate-fade-slide-up">
-          <h2 className="text-lg font-bold mb-3 flex items-center gap-2">
-            <span className="text-accent">▸</span> Live Preview
-          </h2>
-          <LivePreview url={project.liveUrl} title={project.repo} />
-        </section>
-      )}
 
       {/* Project Card Preview */}
       <div className="flex justify-center mb-8">
@@ -120,17 +111,21 @@ export default async function ProjectPage({
         </div>
       </div>
 
-      {/* GitHub Link */}
-      <div className="flex justify-center mb-8">
+      {/* Links (GitHub & Live Preview) */}
+      <div className="flex justify-center gap-4 mb-8">
         <a
           href={`https://github.com/${project.username}/${project.repo}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 px-4 py-2 bg-accent text-white rounded-lg hover:bg-accent/80 transition-colors"
+          className="inline-flex items-center gap-2 px-4 py-2 bg-accent text-white rounded-lg hover:bg-accent/80 transition-colors shadow-lg shadow-accent/20"
         >
           <GitHubIcon />
           View on GitHub
         </a>
+
+        {project.liveUrl && (
+          <LivePreviewModal url={project.liveUrl} title={project.repo} />
+        )}
       </div>
 
       {/* Meta & Tags */}

@@ -18,7 +18,10 @@ export default function LivePreview({ url, title }: LivePreviewProps) {
   };
 
   return (
-    <div className="w-full">
+    <div 
+      className="w-full mx-auto transition-all duration-500 ease-in-out"
+      style={{ maxWidth: deviceWidths[activeDevice] }}
+    >
       {/* Browser Chrome */}
       <div className="bg-mantle rounded-t-xl border border-card-border border-b-0">
         {/* Title bar with traffic lights */}
@@ -30,10 +33,10 @@ export default function LivePreview({ url, title }: LivePreviewProps) {
           </div>
 
           {/* URL Bar */}
-          <div className="flex-1 mx-4">
-            <div className="flex items-center gap-2 bg-crust rounded-lg px-3 py-1.5 text-xs text-muted max-w-lg mx-auto">
+          <div className="flex-1 mx-2 sm:mx-4 min-w-0">
+            <div className="flex items-center gap-1.5 sm:gap-2 bg-crust rounded-lg px-2 sm:px-3 py-1.5 text-xs text-muted max-w-lg mx-auto">
               <LockIcon />
-              <span className="truncate">{url}</span>
+              <span className="truncate flex-1 min-w-0">{url}</span>
             </div>
           </div>
 
@@ -79,7 +82,7 @@ export default function LivePreview({ url, title }: LivePreviewProps) {
       {/* Iframe Container */}
       <div
         className="relative bg-crust border border-card-border rounded-b-xl overflow-hidden transition-all duration-500 ease-in-out"
-        style={{ height: activeDevice === "mobile" ? "667px" : "560px" }}
+        style={{ height: activeDevice === "desktop" ? "75vh" : activeDevice === "tablet" ? "800px" : "667px" }}
       >
         {/* Loading Skeleton */}
         {isLoading && (
@@ -93,10 +96,7 @@ export default function LivePreview({ url, title }: LivePreviewProps) {
         )}
 
         {/* Iframe */}
-        <div
-          className="mx-auto h-full transition-all duration-500 ease-in-out"
-          style={{ maxWidth: deviceWidths[activeDevice] }}
-        >
+        <div className="w-full h-full">
           <iframe
             src={url}
             title={`Live preview of ${title}`}

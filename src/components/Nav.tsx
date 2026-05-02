@@ -11,17 +11,19 @@ export default function Nav() {
   const { flavor, setFlavor, accent, setAccent, backgroundEffect, setBackgroundEffect } = useTheme();
 
   const renderPath = () => {
-    if (pathname === "/") {
-      return <span>~/home</span>;
+    if (pathname === "/dev" || pathname === "/") {
+      return <span>~/dev</span>;
     }
 
     const segments = pathname.split("/").filter(Boolean);
+    const devSegments = segments[0] === 'dev' ? segments.slice(1) : segments;
+
     return (
       <>
-        ~/<Link href="/" className="text-accent hover:text-foreground transition-colors">home</Link>
-        {segments.map((segment, index) => {
-          const isLast = index === segments.length - 1;
-          const href = "/" + segments.slice(0, index + 1).join("/");
+        ~/<Link href="/dev" className="text-accent hover:text-foreground transition-colors">dev</Link>
+        {devSegments.map((segment, index) => {
+          const isLast = index === devSegments.length - 1;
+          const href = "/dev/" + devSegments.slice(0, index + 1).join("/");
           return isLast ? (
             <span key={segment}>/{segment}</span>
           ) : (
@@ -33,15 +35,15 @@ export default function Nav() {
   };
 
   const navLinks = [
-    { href: "/", label: "Home" },
-    { href: "/about", label: "About" },
-    { href: "/projects", label: "Projects" },
-    { href: "/resume", label: "Resume" },
+    { href: "/dev", label: "Home" },
+    { href: "/dev/about", label: "About" },
+    { href: "/dev/projects", label: "Projects" },
+    { href: "/dev/resume", label: "Resume" },
   ];
 
   const moreLinks = [
-    { href: "/notes", label: "Notes" },
-    { href: "/terminal", label: "Terminal" },
+    { href: "/dev/notes", label: "Notes" },
+    { href: "/dev/terminal", label: "Terminal" },
   ];
 
   const flavorOptions: { value: ThemeFlavor; label: string }[] = [
@@ -66,26 +68,26 @@ export default function Nav() {
         {/* Desktop nav - hidden on mobile */}
         <nav className="hidden md:flex gap-6 text-sm text-muted">
           <Link
-            href="/"
-            className={pathname === "/" ? "text-foreground" : "hover:text-foreground transition-colors"}
+            href="/dev"
+            className={pathname === "/dev" ? "text-foreground" : "hover:text-foreground transition-colors"}
           >
             Home
           </Link>
           <Link
-            href="/about"
-            className={pathname === "/about" ? "text-foreground" : "hover:text-foreground transition-colors"}
+            href="/dev/about"
+            className={pathname === "/dev/about" ? "text-foreground" : "hover:text-foreground transition-colors"}
           >
             About
           </Link>
           <Link
-            href="/projects"
-            className={pathname === "/projects" ? "text-foreground" : "hover:text-foreground transition-colors"}
+            href="/dev/projects"
+            className={pathname === "/dev/projects" ? "text-foreground" : "hover:text-foreground transition-colors"}
           >
             Projects
           </Link>
           <Link
-            href="/resume"
-            className={pathname === "/resume" ? "text-foreground" : "hover:text-foreground transition-colors"}
+            href="/dev/resume"
+            className={pathname === "/dev/resume" ? "text-foreground" : "hover:text-foreground transition-colors"}
           >
             Resume
           </Link>

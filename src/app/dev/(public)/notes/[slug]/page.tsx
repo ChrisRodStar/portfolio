@@ -20,7 +20,7 @@ export default async function NotePage({
       <div className="p-6 max-w-4xl mx-auto flex-1">
         <div className="text-center py-20">
           <h1 className="text-3xl font-bold mb-4">Note Not Found</h1>
-          <Link href="/notes" className="text-accent hover:underline">
+          <Link href="/dev/notes" className="text-accent hover:underline">
             ← Back to Notes
           </Link>
         </div>
@@ -32,7 +32,7 @@ export default async function NotePage({
     <div className="p-6 max-w-4xl mx-auto flex-1">
       {/* Back Link */}
       <div className="mb-6">
-        <Link href="/notes" className="text-accent hover:underline text-sm">
+        <Link href="/dev/notes" className="text-accent hover:underline text-sm">
           ← Back to Notes
         </Link>
       </div>

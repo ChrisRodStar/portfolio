@@ -3,12 +3,8 @@ import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/context/ThemeContext";
 import BackgroundEffect from "@/components/BackgroundEffect";
-import Nav from "@/components/Nav";
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
-import Footer from "@/components/Footer";
-
-
 const JetBrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
   subsets: ["latin"]
@@ -83,15 +79,9 @@ export default function RootLayout({
         <ThemeProvider>
           <BackgroundEffect />
           <div className="h-[100dvh] overflow-y-auto flex flex-col relative z-10">
-            <div className="p-4 max-w-6xl mx-auto w-full shrink-0">
-              <Nav />
-            </div>
             {children}
             <Analytics />
             <SpeedInsights/>
-            <div className="mt-auto p-4 max-w-6xl mx-auto w-full shrink-0">
-              <Footer />
-            </div>
           </div>
         </ThemeProvider>
       </body>

@@ -1,5 +1,5 @@
 import NoteCard from "@/components/NoteCard";
-import { notes } from "@/lib/notes";
+import { notes, type Note } from "@/lib/notes";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -17,7 +17,7 @@ export default function NotesPage() {
         <p className="text-muted flex-1">No notes yet...</p>
       ) : (
         <div className="grid gap-6 sm:grid-cols-2">
-          {notes.map((note) => (
+          {notes.map((note: Note) => (
             <NoteCard
               key={note.slug}
               slug={note.slug}

@@ -45,7 +45,6 @@ Create a `.env.local` with:
 
 ```env
 DATABASE_URL=your_neon_connection_string
-GITHUB_TOKEN=your_github_pat
 ```
 
 ---

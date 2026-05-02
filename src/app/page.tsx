@@ -15,7 +15,7 @@ export default async function Home() {
     }))
   );
   return (
-    <div className="p-4 max-w-6xl mx-auto flex flex-col flex-1 w-full overflow-x-hidden">
+    <div className="p-4 max-w-6xl mx-auto flex flex-col flex-1 w-full overflow-x-hidden min-h-0">
 
       {/* Hero Section */}
       <section id="about" className="mb-4">
@@ -123,7 +123,7 @@ export default async function Home() {
           </h3>
           <span className="text-xs text-muted hidden sm:inline">[info]</span>
         </div>
-        <div className="flex-1 overflow-auto">
+        <div className="flex-1 overflow-auto min-h-0">
           <RecentCommits />
         </div>
         <a href="https://github.com/ChrisRodStar" target="_blank" rel="noopener noreferrer" className="text-foreground text-xs mt-2 inline-block hover:underline">

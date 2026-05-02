@@ -55,7 +55,7 @@ export async function getCommits(): Promise<Commit[]> {
     }
 
     const reposRes = await fetch(
-      'https://api.github.com/users/ChrisRodStar/repos?sort=pushed&per_page=5',
+      'https://api.github.com/users/ChrisRodStar/repos?sort=pushed&per_page=10',
       { headers, next: { revalidate: 300 } }
     );
 
@@ -67,7 +67,7 @@ export async function getCommits(): Promise<Commit[]> {
 
     const commitPromises = repos.map(async (repo) => {
       const commitsRes = await fetch(
-        `https://api.github.com/repos/ChrisRodStar/${repo.name}/commits?per_page=4`,
+        `https://api.github.com/repos/ChrisRodStar/${repo.name}/commits?per_page=10`,
         { headers, next: { revalidate: 300 } }
       );
 
@@ -81,7 +81,7 @@ export async function getCommits(): Promise<Commit[]> {
       }));
     });
 
-    const allCommits = (await Promise.all(commitPromises)).flat().slice(0, 12);
+    const allCommits = (await Promise.all(commitPromises)).flat().slice(0, 50);
     return allCommits;
   } catch (error) {
     console.error('Failed to fetch commits:', error);

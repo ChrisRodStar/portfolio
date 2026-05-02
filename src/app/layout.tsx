@@ -82,14 +82,14 @@ export default function RootLayout({
       >
         <ThemeProvider>
           <BackgroundEffect />
-          <div className="min-h-screen flex flex-col relative z-10">
-            <div className="p-4 max-w-6xl mx-auto w-full">
+          <div className="h-[100dvh] overflow-y-auto flex flex-col relative z-10">
+            <div className="p-4 max-w-6xl mx-auto w-full shrink-0">
               <Nav />
             </div>
             {children}
             <Analytics />
             <SpeedInsights/>
-            <div className="mt-auto p-4 max-w-6xl mx-auto w-full">
+            <div className="mt-auto p-4 max-w-6xl mx-auto w-full shrink-0">
               <Footer />
             </div>
           </div>

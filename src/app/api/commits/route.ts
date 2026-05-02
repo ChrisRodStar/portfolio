@@ -31,10 +31,6 @@ export async function GET(request: NextRequest) {
       'X-GitHub-Api-Version': '2022-11-28',
     };
 
-    if (process.env.GITHUB_TOKEN) {
-      headers.Authorization = `Bearer ${process.env.GITHUB_TOKEN}`;
-    }
-
     const reposRes = await fetch(
       'https://api.github.com/users/ChrisRodStar/repos?sort=pushed&per_page=5',
       { headers, next: { revalidate: 300 } }
